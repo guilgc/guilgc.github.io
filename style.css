@@ -19,7 +19,7 @@ header div {
 body {
     background-image: url(https://www.flaticon.com/svg/vstatic/svg/2111/2111425.svg?token=exp=1611662350~hmac=a1a24063cbaab40a87690478ba071560);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     font-family: 'Noto Sans', sans-serif;
 }
 
@@ -35,19 +35,24 @@ body {
 }
 
 #divfoto {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto;
+    row-gap: 7%;
+    column-gap: 5%;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin: auto;
     color: chocolate;
     
 }
 #foto {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: auto;
+    row-gap: 7%;
+    column-gap: 5%;
+    flex-wrap: wrap;
+    justify-items: center;
     align-items: center;
-    margin: auto;
     color: chocolate;
     font-family: 'Coda Caption', sans-serif !important;
     font-size: 140%;
@@ -89,4 +94,24 @@ section #div1 div {
 
 .linguagem {
     width: 50%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content button {
+    border: none;
+    background-color: chocolate;
+    color: white;
+    text-transform: uppercase;
+
+}
+
+#link {
+    color: chocolate;
+    font-style: italic;
 }

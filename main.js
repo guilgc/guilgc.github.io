@@ -40,8 +40,10 @@ function pesquisar() {
                 <div class="content">
                 <h2>${name}</h2>
                 
-                <a target="_blank" href="${linkRepo}">ir para o repositório</a>
+                <a target="_blank" id="link" href="${linkRepo}">Clique para ir ao repositório</a>
                 <button class="btn-card" onclick="clone('git clone ${cloneRepo}')">Clonar o repositório</button>
+
+                <a target="_blank" id="link" href="$">Mais Informações</a>
                 
                 </div>
                 </div>
