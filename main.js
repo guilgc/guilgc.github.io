@@ -38,12 +38,13 @@ function pesquisar() {
                 <img src="imagens/${imgCard}.svg" alt="imagem de fundo dos cards">
                 </div>
                 <div class="content">
-                <h2>${name}</h2>
-                
-                <a target="_blank" id="link" href="${linkRepo}">Clique para ir ao repositório</a>
+                <h2>Repositório: ${name}</h2>
+                <br>
+                <a target="_blank" class="link" href="${linkRepo}">Clique para ir ao repositório</a>
+                <br>
                 <button class="btn-card" onclick="clone('git clone ${cloneRepo}')">Clonar o repositório</button>
-
-                <a target="_blank" id="link" href="$">Mais Informações</a>
+                <br>
+                <a target="_blank" class="link" id="${dataJSONObj[i].name}"  href="index1.html" onclick="abrirsobre(this)">Mais Informações</a>
                 
                 </div>
                 </div>
@@ -53,17 +54,17 @@ function pesquisar() {
     }
     xhr.send();
     
-    clear();
+    esvazia();
 }
 
-function clear() {
+function esvazia() {
     const repos = document.querySelector('#div1')
     repos.innerHTML = ""
     const fotouserr = document.getElementById('divfoto')
     fotouserr.innerHTML = ""
 }
 
-function clone(url) {
+function clonar(url) {
     const input = document.createElement("input");
     input.value = url;
     input.id = "input";
@@ -72,3 +73,17 @@ function clone(url) {
     document.execCommand("copy");
     input.remove();
 }
+
+function abrirsobre(sobre){
+    const name = document.getElementById('input').value
+    
+    let arr = []
+
+    arr.push({nome: sobre.id})
+    arr.push(name)
+    let arrJson = JSON.stringify(arr)
+
+    localStorage.repositorio = arrJson
+
+    window.location.href = "index1.html"
+} 
