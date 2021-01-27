@@ -1,11 +1,14 @@
 const botaoenter = document.getElementById('input');
 
+//função para o enter ativar a função pesquisar
 botaoenter.addEventListener('keypress', (e)=> {
     if (e.keyCode ===13) {
         pesquisar();
+        
     }
 });
 
+//função para fazer a requisição em cima do 'user' digitado e aparecer todos os detalhes de cada repositório
 function pesquisar() {
     const usuario = document.getElementById('input').value
     let xhr = new XMLHttpRequest();
@@ -21,8 +24,12 @@ function pesquisar() {
             
             const fotourl = dataJSONObj[0].owner.avatar_url
             const nameUser = dataJSONObj[0].owner.login
-            fotouser.innerHTML += `<div id='foto'><img src="${fotourl}">
-            <h1>${nameUser}</h1></div>            
+            fotouser.innerHTML += `
+            <div id='foto'>
+            <img src="${fotourl}">
+            <h1>${nameUser}</h1>
+            <a class="link1" target="_blank" href="https://github.com/${nameUser}?tab=following">Pessoas que segue</a>
+            </div>            
             `
             
             for (let i = 0; i < dataJSONObj.length; i++) {
@@ -31,6 +38,12 @@ function pesquisar() {
                 
                 const linkRepo = dataJSONObj[i].html_url;
                 const name = dataJSONObj[i].name;
+                const seguidores = dataJSONObj[i].following_url;
+                const id = dataJSONObj[i].id;
+                const repo = dataJSONObj[i].default_branch;
+                const desc = dataJSONObj[i].description;
+                const linguagem = dataJSONObj[i].language;
+                
                 projetos.innerHTML +=
                 `              
                 <div class="box">        
@@ -42,10 +55,14 @@ function pesquisar() {
                 <br>
                 <a target="_blank" class="link" href="${linkRepo}">Clique para ir ao repositório</a>
                 <br>
-                <button class="btn-card" onclick="clone('git clone ${cloneRepo}')">Clonar o repositório</button>
-                <br>
-                <a target="_blank" class="link" id="${dataJSONObj[i].name}"  href="index1.html" onclick="abrirsobre(this)">Mais Informações</a>
-                
+                <button onclick="clone('git clone ${cloneRepo}')">Clonar o repositório</button>
+                <br>         
+                <p>Id do Repositório: ${id}</p>
+                <a class="link" target="_blank" href="https://github.com/${nameUser}/${name}/branches">Branches</a>
+                <a class="link" target="_blank" href="https://github.com/${nameUser}/${name}/commits/${repo}">Commits</a>
+                <p>Descrição: ${desc}</p>
+                <p>Linguagens: ${linguagem}</p>
+                            
                 </div>
                 </div>
                 `
@@ -57,6 +74,7 @@ function pesquisar() {
     esvazia();
 }
 
+//função para esvaziar o corpo da pagina quando tiver nova pesquisa
 function esvazia() {
     const repos = document.querySelector('#div1')
     repos.innerHTML = ""
@@ -64,6 +82,7 @@ function esvazia() {
     fotouserr.innerHTML = ""
 }
 
+//função para clonar o repositório
 function clonar(url) {
     const input = document.createElement("input");
     input.value = url;
@@ -73,17 +92,3 @@ function clonar(url) {
     document.execCommand("copy");
     input.remove();
 }
-
-function abrirsobre(sobre){
-    const name = document.getElementById('input').value
-    
-    let arr = []
-
-    arr.push({nome: sobre.id})
-    arr.push(name)
-    let arrJson = JSON.stringify(arr)
-
-    localStorage.repositorio = arrJson
-
-    window.location.href = "index1.html"
-} 
