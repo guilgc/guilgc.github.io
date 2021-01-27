@@ -1,5 +1,6 @@
 const botaoenter = document.getElementById('input');
 
+
 //função para o enter ativar a função pesquisar
 botaoenter.addEventListener('keypress', (e)=> {
     if (e.keyCode ===13) {
@@ -7,6 +8,10 @@ botaoenter.addEventListener('keypress', (e)=> {
         
     }
 });
+
+function semusuario(){
+        alert ('Usuário não encontrado')
+}
 
 //função para fazer a requisição em cima do 'user' digitado e aparecer todos os detalhes de cada repositório
 function pesquisar() {
@@ -41,8 +46,8 @@ function pesquisar() {
                 const seguidores = dataJSONObj[i].following_url;
                 const id = dataJSONObj[i].id;
                 const repo = dataJSONObj[i].default_branch;
-                const desc = dataJSONObj[i].description;
-                var linguagem = dataJSONObj[i].language;
+                const desc = dataJSONObj[i].description ?? 'Sem descrição';
+                const linguagem = dataJSONObj[i].language ?? 'Sem linguagem predominante';
                 
                 projetos.innerHTML +=
                 `              
@@ -66,10 +71,10 @@ function pesquisar() {
                 </div>
                 </div>
                 `
-                if(linguagem === null){document.getElementById('lingua').innerText = 'Linguagem: Sem linguagem predominante'}
                 
             }
         }
+        
     }
    
     xhr.send();
