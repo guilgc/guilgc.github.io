@@ -30,7 +30,7 @@ body {
     border-radius: 5%;
     border: solid chocolate;
     margin: 3% auto;
-    width: 30%;
+    width: 40%;
     font-size: 200%;
 }
 
@@ -127,4 +127,13 @@ section #div1 div {
     background-color: chocolate;
     text-decoration:underline;
     text-transform: capitalize !important;
+}
+
+.link1:hover {
+    cursor: pointer;
+    opacity: 75%;
+}
+
+#linguagem {
+    width: 100%
 }

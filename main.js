@@ -42,13 +42,13 @@ function pesquisar() {
                 const id = dataJSONObj[i].id;
                 const repo = dataJSONObj[i].default_branch;
                 const desc = dataJSONObj[i].description;
-                const linguagem = dataJSONObj[i].language;
+                var linguagem = dataJSONObj[i].language;
                 
                 projetos.innerHTML +=
                 `              
                 <div class="box">        
                 <div class="linguagem">
-                <img src="imagens/${imgCard}.svg" alt="imagem de fundo dos cards">
+                <img id="linguagem" src="imagens/${imgCard}.svg" alt="imagem de fundo dos cards">
                 </div>
                 <div class="content">
                 <h2>Repositório: ${name}</h2>
@@ -61,14 +61,17 @@ function pesquisar() {
                 <a class="link" target="_blank" href="https://github.com/${nameUser}/${name}/branches">Branches</a>
                 <a class="link" target="_blank" href="https://github.com/${nameUser}/${name}/commits/${repo}">Commits</a>
                 <p>Descrição: ${desc}</p>
-                <p>Linguagens: ${linguagem}</p>
+                <p id="lingua">Linguagens: ${linguagem}</p>
                             
                 </div>
                 </div>
                 `
+                if(linguagem === null){document.getElementById('lingua').innerText = 'Linguagem: Sem linguagem predominante'}
+                
             }
         }
     }
+   
     xhr.send();
     
     esvazia();
